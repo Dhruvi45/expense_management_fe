@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import React, { useEffect, useState } from 'react';
+import { useNavigate  } from 'react-router-dom';
+import { getExpenses } from './services/api';
+import ExpensesList, { Expense } from './components/ExpensesList';
+import AddExpense from './components/AddExpense';
 function App() {
+  const [expenses, setExpenses] = useState<Expense[]>([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchExpenses = async () => {
+      const data = await getExpenses();
+      setExpenses(data);
+    };
+
+    fetchExpenses();
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    navigate('/login');
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <button onClick={handleLogout}>Logout</button>
+      <AddExpense onAddExpense={(expense) => setExpenses([...expenses, expense])} />
+      <ExpensesList expenses={expenses} />
     </div>
   );
-}
+};
 
 export default App;
