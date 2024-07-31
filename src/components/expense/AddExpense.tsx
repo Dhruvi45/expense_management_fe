@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { addExpense } from '../services/api';
-import EMInput from '../controls/EMInput';
+import { addExpense } from '../../services/api';
+import EMInput from '../../controls/EMInput';
 
 interface AddExpenseProps {
   onAddExpense: (expense: any) => void;

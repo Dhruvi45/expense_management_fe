@@ -10,7 +10,8 @@ export interface Expense {
 export interface ExpensesListProps {
   expenses: Expense[];
 }
-export default function ExpensesList({expenses }:ExpensesListProps ) {
+export default function ExpensesList( ) {
+  const expenses:Expense[] = []
     return (
         <div>
           <h2>Expenses</h2>
