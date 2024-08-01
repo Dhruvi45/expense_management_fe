@@ -1,5 +1,7 @@
 import React from 'react';
 import EMTable from '../../controls/EMTable';
+import { Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 export interface Expense {
   _id: string;
@@ -12,7 +14,8 @@ export interface ExpensesListProps {
   expenses: Expense[];
 }
 export default function ExpensesList() {
-  // const expenses:Expense[] = []
+  const navigate = useNavigate();
+  
   const expenses = [
     {
       user_id: '60d21b4667d0d8992e610c85',
@@ -90,6 +93,7 @@ export default function ExpensesList() {
   return (
     <div>
       <h2>Expenses</h2>
+      <Button onClick={() => navigate("/add-expense")}> Add</Button>
       <EMTable data={expenses} columns={tableColumn}/>
     </div>
   );

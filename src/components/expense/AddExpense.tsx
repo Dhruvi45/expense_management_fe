@@ -1,43 +1,63 @@
 import React, { useState } from 'react';
 import { addExpense } from '../../services/api';
+import { useForm, FormProvider, SubmitHandler } from 'react-hook-form';
+import { Button, Form } from 'react-bootstrap';
 import EMInput from '../../controls/EMInput';
 
-interface AddExpenseProps {
-  onAddExpense: (expense: any) => void;
+interface FormValues {
+  user_id?: string;
+  amount: number;
+  description: string;
+  category: string;
+  date: Date;
 }
-export default function AddExpense({ onAddExpense }: AddExpenseProps) {
-  const [description, setDescription] = useState('');
-  const [amount, setAmount] = useState('');
-  const [date, setDate] = useState('');
+export default function AddExpense() {
+  const methods = useForm<FormValues>();
+  const { handleSubmit } = methods;
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const newExpense = await addExpense({ description, amount: parseFloat(amount), date });
-    onAddExpense(newExpense);
-    setDescription('');
-    setAmount('');
-    setDate('');
+  const onSubmit: SubmitHandler<FormValues> = data => {
+    console.log(data);
   };
 
+
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
+    <FormProvider {...methods}>
+      <Form onSubmit={handleSubmit(onSubmit)}>
         <EMInput
-          label={'Description'}
-          type={'text'}
-          placeholder={'Description'} />
-        {/* <label>Description</label>
-        <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} required /> */}
-      </div>
-      <div>
-        <label>Amount</label>
-        <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} required />
-      </div>
-      <div>
-        <label>Date</label>
-        <input type="date" value={date} onChange={(e) => setDate(e.target.value)} required />
-      </div>
-      <button type="submit">Add Expense</button>
-    </form>
+          label="Amount"
+          type="number"
+          placeholder="Enter amount"
+          name="amount"
+          required={true}
+          min={0}
+          max={10000}
+        />
+        <EMInput
+          label="Description"
+          type="text"
+          placeholder="Enter description"
+          name="description"
+          required={true}
+          minLength={10}
+          maxLength={100}
+        />
+        <EMInput
+          label="Category"
+          type="text"
+          placeholder="Enter category"
+          name="category"
+          required={true}
+        />
+        <EMInput
+          label="date"
+          type="date"
+          placeholder="Select Date"
+          name="date"
+          required={true}
+        />
+
+        <Button type="submit">Submit</Button>
+      </Form>
+    </FormProvider>
   );
 }

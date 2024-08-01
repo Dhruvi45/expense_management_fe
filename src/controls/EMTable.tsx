@@ -43,7 +43,7 @@ export default function EMTable(props: any) {
               {column.key === 'date' ?
                 <Cell dataKey={column.key} >
                   {rowData => (
-                    moment(new Date(rowData.date).toString()).format('LLLL')
+                    moment(new Date(rowData.date).toString()).format('LL')
                   )}
                 </Cell>
                 :
