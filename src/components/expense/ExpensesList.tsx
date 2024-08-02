@@ -93,7 +93,7 @@ export default function ExpensesList() {
   return (
     <div>
       <h2>Expenses</h2>
-      <Button onClick={() => navigate("/add-expense")}> Add</Button>
+      <Button onClick={() => navigate("/expense")}> Add</Button>
       <EMTable data={expenses} columns={tableColumn}/>
     </div>
   );

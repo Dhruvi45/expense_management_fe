@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate  } from 'react-router-dom';
-import { login } from '../../services/auth';
 
 export default function Login() {
     const [email, setEmail] = useState('');
@@ -9,10 +8,10 @@ export default function Login() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const success = await login(email, password);
-    if (success) {
-      navigate('/');
-    }
+    // const success = await login(email, password);
+    // if (success) {
+    //   navigate('/');
+    // }
   };
 
   return (

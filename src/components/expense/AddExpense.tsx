@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { addExpense } from '../../services/api';
 import { useForm, FormProvider, SubmitHandler } from 'react-hook-form';
 import { Button, Form } from 'react-bootstrap';
 import EMInput from '../../controls/EMInput';
+import { useParams } from 'react-router-dom';
 
 interface FormValues {
   user_id?: string;
@@ -14,6 +14,8 @@ interface FormValues {
 export default function AddExpense() {
   const methods = useForm<FormValues>();
   const { handleSubmit } = methods;
+  const { id } = useParams();
+
 
   const onSubmit: SubmitHandler<FormValues> = data => {
     console.log(data);

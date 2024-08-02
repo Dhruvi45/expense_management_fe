@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "rsuite/dist/rsuite.css";
+import "react-toastify/dist/ReactToastify.css";
 import App from './App';
 
 ReactDOM.render(

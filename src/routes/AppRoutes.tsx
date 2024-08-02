@@ -13,9 +13,11 @@ export default function AppRoutes() {
         <Routes>
             <Route path="/" element={<Dashboard />} />
             <Route path="/manage-expense" element={<ExpensesList />} />
-            <Route path="/add-expense" element={<AddExpense />} />
+            <Route path="/expense" element={<AddExpense />} />
+            <Route path="/expense/:id" element={<AddExpense />} />
             <Route path="/manage-category" element={<CategoryList />} />
-            <Route path="/add-category" element={<AddCategory />} />
+            <Route path="/category" element={<AddCategory />} />
+            <Route path="/category/:id" element={<AddCategory />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
         </Routes>

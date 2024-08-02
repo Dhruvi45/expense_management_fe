@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate  } from 'react-router-dom';
-import { register } from '../../services/auth';
 
 export default function Register() {
     const [username, setUsername] = useState('');
@@ -10,10 +9,10 @@ export default function Register() {
   
     const handleSubmit = async (e: React.FormEvent) => {
       e.preventDefault();
-      const success = await register(username, email, password);
-      if (success) {
-        navigate('/login');
-      }
+      // const success = await register(username, email, password);
+      // if (success) {
+      //   navigate('/login');
+      // }
     };
   
     return (
